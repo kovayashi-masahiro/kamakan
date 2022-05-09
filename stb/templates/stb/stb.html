@@ -1,0 +1,587 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS3Z9CC');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<title>相続対策物件購入による相続税圧縮効果の試算</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../static/css/common.css" media="screen, print">
+<meta name="format-detection" content="telephone=yes">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.bundle.min.js" integrity="sha384-CS0nxkpPy+xUkNGhObAISrkg/xjb3USVCwy+0/NMzd5VxgY4CMCyTkItmy5n0voC" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://unpkg.com/microtip/microtip.css">
+<!-- <link rel="stylesheet" href="main.css"> -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS3Z9CC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!--▽wrapper-->
+<div id="wrapper">
+
+<!--▽form-->
+<div id="form">
+<h1>相続対策物件購入による<br>相続税圧縮効果の試算</h1>
+
+<h2>購入者データ</h2>
+<!-- <dl class="accordion1"> -->
+<dt>購入前純資産(万円)</dt>
+<dd>
+<input aria-label="総資産から負債を差引いた金額" role="tooltip" type="number" id="shisan" size="5" value="10000" min="0" step="1000">
+<div id=bsouzokuzei></div>
+</dd>
+<dt>配偶者の有無</dt>
+<dd>
+<select id="haigu">
+<option value=0>無し</option>
+<option value=1>有り</option>
+</select>
+<div></div>
+</dd>
+<dt>子の数</dt>
+<dd>
+<select id="kodomo">
+<option value=1 selected>1名</option>
+<option value=2>2名</option>
+<option value=3>3名</option>
+<option value=4>4名</option>
+<option value=5>5名</option>
+<option value=6>6名</option>
+<option value=7>7名</option>
+<option value=8>8名</option>
+<option value=9>9名</option>
+</select>
+ <div></div>
+</dd>
+</dl>
+
+
+<h2>購入物件データ</h2>
+
+<dl>
+
+
+<dt><div id="need">物件購入価格(万円)<a id="ac1">（購入経費を入力する場合はこちらをクリック）</a></div></dt>
+<dd>
+<input type="number" id="kakaku" size="5" value="" min="0" step="1000">
+<div type="number" id="kkeihi"></div>
+</dd>
+
+<ul id="pop_inner1">
+    <dt><div aria-label="無入力の場合物件購入価格の８％とします" role="tooltip">購入経費</div></dt>
+    <dd>
+    <input type="number" id="keihi" size="5" value="" min=0 step="100">
+    <div></div>
+    </dd>
+</ul>
+
+
+<dt><div  aria-label="固定資産税評価額を入力してください。不明の場合は①②③を入力してください" role="tooltip">建物相続税評価（万円）<a id="ac2">（不明な場合はクリック）</a></div></dt>
+<dd>
+<input type="number" id="taszhyouka" size="5" value="" step="100" >
+<div id="inptaszhyouka"></div>
+</dd>
+
+<ul id="pop_inner2">
+  <dt><div aria-label="建物相続税評価を入力した場合は入力不要です" role="tooltip">①延床面積（㎡)</div></dt>
+  <dd>
+  <input type="number" id="FloorSpace" size="5" value="" min="1" step="10">
+  <div></div>
+  </dd>
+
+  <dt><div aria-label="建物相続税評価を入力した場合は入力不要です" role="tooltip">②構造 </div></dt>
+  <dd>
+  <select id="Structure" >
+  <option value="W" selected>木造</option>
+  <option value="SRC">SRC造</option>
+  <option value="RC">RC造</option>
+  <option value="HS">重量鉄骨造</option>
+  <option value="LS">軽量鉄骨造</option>
+  </select>
+  <div id="ttanka"></div>
+  </dd>
+
+  <dt> <div aria-label="建物相続税評価を入力した場合は入力不要です" role="tooltip">③経過年数</div></dt>
+  <dd>
+  <select id="keikanen" >
+   <option value="0">0年</option>
+    <option value="1">1年</option>
+    <option value="2">2年</option>
+    <option value="3">3年</option>
+    <option value="4">4年</option>
+    <option value="5" selected>5年</option>
+    <option value="6">6年</option>
+    <option value="7">7年</option>
+    <option value="8">8年</option>
+    <option value="9">9年</option>
+    <option value="10">10年</option>
+    <option value="11">11年</option>
+    <option value="12">12年</option>
+    <option value="13">13年</option>
+    <option value="14">14年</option>
+    <option value="15">15年</option>
+    <option value="16">16年</option>
+    <option value="17">17年</option>
+    <option value="18">18年</option>
+    <option value="19">19年</option>
+    <option value="20">20年</option>
+    <option value="21">21年</option>
+    <option value="22">22年</option>
+    <option value="23">23年</option>
+    <option value="24">24年</option>
+    <option value="25">25年</option>
+    <option value="26">26年</option>
+    <option value="27">27年</option>
+    <option value="28">28年</option>
+    <option value="29">29年</option>
+    <option value="30">30年</option>
+    <option value="31">31年</option>
+    <option value="32">32年</option>
+    <option value="33">33年</option>
+    <option value="34">34年</option>
+    <option value="35">35年</option>
+    <option value="36">36年</option>
+    <option value="37">37年</option>
+    <option value="38">38年</option>
+    <option value="39">39年</option>
+    <option value="40">40年</option>
+    <option value="41">41年</option>
+    <option value="42">42年</otion>
+    <option value="43">43年</option>
+    <option value="44">44年</option>
+    <option value="45">45年</option>
+    <option value="46">46年</option>
+    <option value="47">47年</option>
+    <option value="48">48年</option>
+    <option value="49">49年</option>
+    <option value="50">50年</option>
+    <option value="51">51年</option>
+    <option value="52">52年</option>
+    <option value="53">53年</option>
+    <option value="54">54年</option>
+    <option value="55">55年</option>
+    <option value="56">56年</option>
+    <option value="57">57年</option>
+    <option value="58">58年</option>
+    <option value="59">59年</option>
+    <option value="60">60年以上</option>
+  </option>
+  </select>
+  <div id="keikahosei"></div>
+  </dd>
+</ul>
+
+
+<dt><div id="need">土地面積（㎡）</div></dt>
+<dd>
+  <input type="number" id="tochimenseki" name="tochmenseki" size=5 >
+  <div></div>
+</dd>
+
+<dt><div id="need">路線価（万円）</div></dt>
+<dd>
+  <input type="number" id="rosenka" name="rosenka" size=5>
+  <div></div>
+</dd>
+
+
+<dt><div id="need">借地権割合</div></dt>
+<dd>
+<select id="syakuchi">
+  <option value=0.9>A(90%)</option>
+  <option value=0.8>B(80%)</option>
+  <option value=0.7>C(70%)</option>
+  <option selected value=0.6>D(60%)</option>
+  <option value=0.5>E(50%)</option>
+  <option value=0.4>F(40%)</option>
+  <option value=0.3>G(30%)</option>
+  <option value=0>自用(0%)</option>
+</select>
+<div id="ptochisyahyouka"></div>
+</dd>
+<div id="syoukibowariai"></div>
+
+
+<dt><div aria-label="適用しない場合はゼロを入力してください。" role="tooltip">小規模宅地等の特例適用面積</div></dt>
+<dd>
+  <input type="number" id="syoukibomenseki" value=0>
+  <div id="syoukibotanka"></div>
+</dd>
+
+<p class="cal">
+  <input class="cal" name="col" type="button" id="formSubmit" onclick=Inpcheck() value="計算">
+</p>
+
+<div class="all">
+    <div class="reg">
+	   <dl>
+	   <dt>新規購入物件相続税評価額の計算</dt>
+	   <dd>
+            <div>＋建物評価額</div>
+            <div id="kashiya">____</div>
+            <div>＋土地評価額</div>
+            <div id="kashiyatatekakaku">____</div>
+            <div>ー小規模宅地等特例</div>
+            <div id="tmpsyoukibogenka">____</div>
+            <hr color="FFF">
+            <div>＝相続税評価額</div>
+            <div id="tmpzentaihyouka">____</div>
+	   </dd>
+	   <dt>相続税評価額圧縮額の計算</dt>
+        <dd >
+            <div>＋不動産購入価格</div>
+            <div id="ckakaku">____</div>
+            <div>＋不動産購入経費</div>
+            <div id="ckeihi">____</div>
+            <div>ー購入不動産相続税評価</div>
+            <div id="ctmpzentaihyouka">____</div>
+            <hr color="FFF">
+            <div>＝相続税評価圧縮額</div>
+            <div id="szpress" >____</div>
+      </dd>
+	   <dt>購入後の相続税額</dt>
+         <dd>
+            <div>購入前相続税額</div>
+            <div id="csouzoku">____</div>
+            <div>購入後相続税額</div>
+            <div id="asouzoku">____</div>
+            <hr color="FFF">
+            <div>＝相続税圧縮額</div>
+            <div id="szgpress">____</div>
+       </dd>
+	   </dl>
+    </div>
+</div>
+
+
+</div>
+<!--▲form-->
+
+
+<!--▽footer-->
+<footer>
+
+</footer>
+<!--▲footer-->
+
+
+</div>
+<!--▲wrapper-->
+
+
+<script>var kashiyatatekakaku;
+// Clear();
+var kakaku;
+console.log("Hello world");
+
+function kazuseiri(NUM){
+ NUM=Math.floor(NUM);
+ NUM=String(NUM).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+ return ( Array(20).join('\u00a0') + NUM).slice(NUM.length*-1);
+}
+function Tatemonohyouka(){
+tmptaszhyouka=$('#taszhyouka').val();
+ var array_w=[1,0.8,0.75,0.7,0.68,0.65,0.63,0.61,0.59,0.56,0.54,0.52,0.5,0.47,0.45,0.43,0.4,0.38,0.36,0.34,0.31,0.29,0.27,0.25,0.22,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,100000];
+ var array_src=[1,0.8,0.75,0.7,0.6912,0.6825,0.6737,0.6649,0.6561,0.6474,0.6386,0.6298,0.6211,0.6123,0.6035,0.5947,0.586,0.5772,0.5684,0.5596,0.5509,0.5421,0.5333,0.5246,0.5158,0.507,0.4982,0.4895,0.4807,0.4719,0.4632,0.4544,0.4456,0.4368,0.4281,0.4193,0.4105,0.4018,0.393,0.3842,0.3754,0.3667,0.3579,0.3491,0.3404,0.3316,0.3228,0.314,0.3053,0.29650,0.2877,0.2789,0.2702,0.2614,0.2526,0.2439,0.2351,0.2263,0.2175,0.2088,0.2,143000];
+ var array_rc=[1,0.8,0.75,0.7,0.6865,0.673,0.6595,0.6459,0.6324,0.6189,0.6054,0.5919,0.5784,0.5649,0.5514,0.5378,0.5243,0.5108,0.4973,0.4838,0.4703,0.4568,0.4432,0.4297,0.4162,0.4027,0.3892,0.3757,0.3622,0.3486,0.3351,0.3216,0.3081,0.2946,0.2811,0.2676,0.2541,0.2405,0.227,0.2135,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.20,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,143000];
+ var array_hs=[1,0.8,0.75,0.7,0.6865,0.673,0.6595,0.6459,0.6324,0.6189,0.6054,0.5919,0.5784,0.5649,0.5514,0.5378,0.5243,0.5108,0.4973,0.4838,0.4703,0.4568,0.4432,0.4297,0.4162,0.4027,0.3892,0.3757,0.3622,0.3486,0.3351,0.3216,0.3081,0.2946,0.2811,0.2676,0.2541,0.2405,0.227,0.2135,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.20,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,116000];
+ var array_ls=[1,0.8,0.75,0.7,0.6706,0.6412,0.6118,0.5824,0.5529,0.5235,0.4941,0.4647,0.4353,0.4059,0.3765,0.3471,0.3176,0.2882,0.2588,0.2294,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.20,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,104000];
+ var hoseichi=[];
+ if($('#Structure').val()=="W")       {hoseichi[0]=array_w[$('#keikanen').val()]
+                                 hoseichi[1]=array_w[61]}
+ else if($('#Structure').val()=="SRC"){hoseichi[0]=array_src[$('#keikanen').val()]
+                                 hoseichi[1]=array_src[61]}
+ else if($('#Structure').val()=="RC"){hoseichi[0]=array_rc[$('#keikanen').val()]
+                                hoseichi[1]=array_rc[61]}
+ else if($('#Structure').val()=="HS"){hoseichi[0]=array_hs[$('#keikanen').val()]
+                                hoseichi[1]=array_hs[61]}
+ else{                          hoseichi[0]=array_ls[$('#keikanen').val()]
+                                hoseichi[1]=array_ls[61]};
+ hoseichi[2]=$('#FloorSpace').val()*hoseichi[0]*hoseichi[1];
+ if($('#taszhyouka').val()>0){
+    taszhyouka.value=($('#taszhyouka').val())
+ }
+    else taszhyouka.value=Math.round(hoseichi[2]/10000);
+ if($('#syakuchi').val()=="0"){
+    kashiya=taszhyouka.value;
+    $('#inptaszhyouka').text("自用建物評価："+kazuseiri(kashiya)+"万円");
+ }
+ else{
+   kashiya=(taszhyouka.value)*0.7;
+   $('#inptaszhyouka').text("貸家による評価："+kazuseiri(kashiya)+"万円");
+ };
+ $('#ttanka').text("建物新築平米単価を"+kazuseiri(hoseichi[1])+"円として評価");
+ $('#keikahosei').text("経年補正率を"+kazuseiri(hoseichi[0]*100)+"%として評価");
+ return
+}
+
+function Tochihyouka(){
+  tmptoszhyouka=$('#tochimenseki').val()*$('#rosenka').val();
+  // tmptoszhyouka=$('#toszhyouka').val();
+    if($('#toszhyouka').val()>0){tochisyokakaku=$('#toszhyouka').val()}
+        else {tochisyokakaku=$('#tochimenseki').val()*$('#rosenka').val()};
+  kashiyatatekakaku=parseInt(tochisyokakaku)*(1-(0.3*$('#syakuchi').val()));
+  $('#ptochisyohyouka').text("土地所有権評価："+kazuseiri(tochisyokakaku)+"万円");
+  $('#toszhyouka').text(kazuseiri(tochisyokakaku)+"万円");
+  $('#ptochisyahyouka').text("土地貸家建付地評価："+kazuseiri(kashiyatatekakaku)+"万円");
+  Kounyukeihi();
+  return
+}
+function showResult(inputInfo) {
+  // 建物タイプ・構造
+  $('#RltStructure').text(inputInfo);
+  $('#rosenka').text(inputInfo);
+}
+
+function Souzokuzeikeisan(pshisan){
+　haigukazu=$('#haigu').val();
+  kodomokazu=$('#kodomo').val();
+  shisankazu=pshisan;
+  if(haigukazu==0)kisoko=kodomokazu*600+3000; else kisoko=kodomokazu*600+3600;
+  kazeiisan=shisankazu-kisoko;
+  if(kazeiisan<0){kazeiisan=0}
+  if(haigukazu=="0")
+  {
+    haigunf="無し";
+    if(kodomokazu>0)
+    {
+    hkazeiisan=0;
+    kkazeiisan=parseInt(kazeiisan/kodomokazu);
+    }
+    else
+    {
+    alert("配偶者と子がいない場合には対応しておりません。");
+    hkazeiisan=0;
+    kkazeiisan=0;
+    return;
+    }
+  }
+  if(haigukazu=="1")
+  {
+    haigunf="有り";
+    if(kodomokazu>0)
+    {
+    hkazeiisan=parseInt(kazeiisan/2);
+    kkazeiisan=parseInt(kazeiisan/2/kodomokazu);
+    }
+    else
+    {
+    hkazeiisan=parseInt(kazeiisan);
+    kkazeiisan=0;
+    }
+  }
+    //配偶者の税率・控除額
+    if(hkazeiisan<=1000){
+    hzeiri=0.1;
+    hmes="　1,000万円以下";
+    hkoujyo=0;}
+    else if(hkazeiisan<=3000){
+    hzeiri=0.15;
+    hmes="　1,000万円超、3,000万円以下";
+    hkoujyo=50;}
+    else if(hkazeiisan<=5000){
+    hzeiri=0.2;
+    hmes="　3,000万円超、5,000万円以下";
+    hkoujyo=200;}
+    else if(hkazeiisan<=10000){
+    hzeiri=0.3;
+    hmes="　5,000万円超、1億円以下";
+    hkoujyo=700;}
+    else if(hkazeiisan<=20000){
+    hzeiri=0.4;
+    hmes="　1億円超、2億円以下";
+    hkoujyo=1700;}
+    else if(hkazeiisan<=30000){
+    hzeiri=0.45;
+    hmes="　2億円超、3億円以下";
+    hkoujyo=2700;}
+    else if (hkazeiisan<=60000){
+    hzeiri=0.5;
+    hmes="　3億円超、6億円以下";
+    hkoujyo=4200;}
+    else {
+    hzeiri=0.55;
+    hmes="　6億円超";
+    hkoujyo=7200;}
+    //子供の税率・控除額
+    if(kkazeiisan<=1000){
+    kzeiri=0.1;
+    kmes="　1,000万円以下";
+    kkoujyo=0;}
+    else if(kkazeiisan<=3000){
+    kzeiri=0.15;
+    kmes="　1,000万円超、3,000万円以下";
+    kkoujyo=50;}
+    else if(kkazeiisan<=5000){
+    kzeiri=0.2;
+    kmes="　3,000万円超、5,000万円以下";
+    kkoujyo=200;}
+    else if(kkazeiisan<=10000){
+    kzeiri=0.3;
+    kmes="　5,000万円超、1億円以下";
+    kkoujyo=700;}
+    else if(kkazeiisan<=20000){
+    kzeiri=0.4;
+    kmes="　1億円超、2億円以下";
+    kkoujyo=1700;}
+    else if(kkazeiisan<=30000){
+    kzeiri=0.45;
+    kmes="　2億円超、3億円以下";
+    kkoujyo=2700;}
+    else if (kkazeiisan<=60000){
+    kzeiri=0.5;
+    kmes="　3億円超、6億円以下";
+    kkoujyo=4200;}
+    else {
+    kzeiri=0.55;
+    kmes="　6億円超";
+    kkoujyo=7200;}
+    //税額計算
+      hzeigaku=hkazeiisan*hzeiri-hkoujyo;
+      kzeigaku=(kkazeiisan*kzeiri-kkoujyo)*kodomokazu;
+      zeigaku=hzeigaku+kzeigaku;
+      //配偶者控除
+    nouzei=parseInt(zeigaku/2);
+    if(haigukazu=="0")nouzei=parseInt(zeigaku);
+    if(kodomokazu=="0")nouzei=0;
+    return
+}
+function Kounyukeihi(){
+    kakaku=$('#kakaku').val();
+    if($('#keihi').val()!=""){
+        keihi=$('#keihi').val()
+    }
+    else
+    {
+        keihi=kakaku*0.08
+        $('#keihi').text(kazuseiri(keihi));
+    }
+    tmpkkeihi=parseInt($('#kakaku').val())+parseInt(keihi);
+    $('#keihi').text(kazuseiri(keihi));
+    $('#kkeihi').text("購入総経費："+kazuseiri(tmpkkeihi)+"万円");
+    return
+}
+function Kounyuubukken(){
+
+}
+function Totalkeisan(){
+    Tatemonohyouka();
+    Souzokuzeikeisan($('#shisan').val());
+     $('#bsouzokuzei').text("現状の相続税額："+kazuseiri(nouzei)+"万円");
+     bsz=nouzei;
+     Tochihyouka();
+     Kounyukeihi();
+     Syoukibo();
+     tmpzentaihyouka=(parseInt(kashiya)+parseInt(kashiyatatekakaku)-parseInt(tmpsyoukibogenka));
+     //$('#zentaihyouka').text(kazuseiri(kashiya)+"万円（建物評価額）＋ "+kazuseiri(kashiyatatekakaku)+"万円（土地評価額） –　"+kazuseiri(tmpsyoukibogenka)+"万円（小規模宅地等特例）＝　"+kazuseiri(tmpzentaihyouka)+"万円");
+     $('#kashiya').text(kazuseiri(kashiya)+"万円");
+     $('#kashiyatatekakaku').text(kazuseiri(kashiyatatekakaku)+"万円");
+     $('#tmpsyoukibogenka').text(kazuseiri(tmpsyoukibogenka)+"万円");
+     $('#tmpzentaihyouka').text(kazuseiri(tmpzentaihyouka)+"万円");
+
+     $('#ckakaku').text(kazuseiri(kakaku)+"万円");
+     $('#ckeihi').text(kazuseiri(keihi)+"万円");
+     $('#ctmpzentaihyouka').text(kazuseiri(tmpzentaihyouka)+"万円");
+     $('#szpress').text(kazuseiri(tmpkkeihi-tmpzentaihyouka)+"万円");
+
+
+     $('#keisan').text(kazuseiri(tmpkkeihi)+"万円（購入総経費） − "+kazuseiri(tmpzentaihyouka)+"万円（相続税評価）＝　"+kazuseiri(tmpkkeihi-tmpzentaihyouka)+"万円");
+     Souzokuzeikeisan($('#shisan').val()-tmpkkeihi+tmpzentaihyouka);
+     asz=nouzei;
+     assyuku=bsz-asz;
+     $('#csouzoku').text(kazuseiri(bsz)+"万円");
+     $('#asouzoku').text(kazuseiri(asz)+"万円");
+     $('#szgpress').text(kazuseiri(assyuku)+"万円");
+     return;
+}
+function Clear(){
+    $('#inptaszhyouka').text()="";
+    $('#ttanka').text()="";
+    $('#keikahosei').val()=0;
+    $('#kakaku').val()=0;
+    $('#keihi').val()=0;
+    $('#taszhyouka').val()=0;
+    $('#FloorSpace').val()=100;
+    $('#Structure').val()="W";
+    $('#keikanen').val()=0;
+    $('#toszhyouka').val()=0;
+    $('#tochimenseki').val()=100;
+    $('#rosenka').val()=100000;
+    $('#syakuchi').val()=0.6;
+    $('#syoukibo').val()=10;
+    $('#syoukibogenka').text()="";
+    $('#syoukibomenseki').val()=100;
+    $('#kkeihi').text()="";
+    $('#inptaszhyouka').text()="";
+    $('#ttanka').text()="";
+    $('#ptochisyohyouka').text()="";
+    $('#ptochisyahyouka').text()="";
+    $('#syoukibotanka').text()="";
+    $('#zentaihyouka').text()="";
+    $('#keisan').text()="";
+    $('#asouzokuzei').text()="";
+return
+}
+function Inpcheck(){
+    if(($('#tochimenseki').val()=="")||($('#shisan').val()=="")||($('#kakaku').val()=="")){
+        alert("必須項目欄に入力してください。")
+        return
+    }
+    else if(($('#FloorSpace').val()=="")||($('#Structure').val()=="")||($('#keikanen').val()=="")){
+        if($('#taszhyouka').val()==""){
+        alert("建物相続税評価入力してください。分からない場合は①延床面積②構造③経過年数を入力してください。")
+        return
+    }
+    else Totalkeisan();
+        }
+    else Totalkeisan();
+    }
+function Syoukibo(){
+    tmpsyoukibomenseki=$('#syoukibomenseki').val();
+    tmpkashiyatatekakaku=$('#ptochisyahyouka').val();
+    tmpsyoukibo=$("#syakuchi").val()=="0"? 0.8:0.5;
+    $('#syoukibowariai').text("小規模宅地の特例により減額される割合："+tmpsyoukibo*100+"％");
+    tmptochimenseki=$('#tochimenseki').val();
+    tmpsyoukibotanka=parseInt(kashiyatatekakaku)/parseInt(tmptochimenseki);
+    if($('#syoukibomenseki').val()==0){
+        tmpsyoukibomenseki=0;
+        tmpsyoukibotanka=0;
+    };
+    $('#syoukibotanka').text("小規模減価平米単価："+kazuseiri(tmpsyoukibotanka)+"万円");
+    tmpsyoukibogenka=parseInt(tmpsyoukibomenseki)*parseFloat(tmpsyoukibotanka)*parseFloat(tmpsyoukibo);
+    $('#syoukibogenka').text("小規模宅地の特例による減価額："+kazuseiri(tmpsyoukibogenka)+"万円");
+    return
+  }
+function Totalsouzokuzei(){
+}
+
+$(function(){
+	// はじめはスライドを隠す
+	$("#pop_inner1").hide();
+  //　ac1のidがクリックされたら
+	$('#ac1').click(function(){
+		//クリックされたidがpop_inner1を開いたり閉じたりする。
+		$('#pop_inner1').slideToggle();
+	});
+});
+
+$(function(){
+	$("#pop_inner2").hide();
+	$('#ac2').click(function(){
+		$('#pop_inner2').slideToggle();
+	});
+});
+
+</script>
+
+</body>
+</html>
