@@ -6,4 +6,5 @@ app_name = 'stb'
 
 urlpatterns = [
     path('', views.stb, name='stb'),
+    path('/stb', views.stb, name='stb'),
 ]
